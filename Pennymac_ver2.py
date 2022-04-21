@@ -1,7 +1,6 @@
 def getData(file):
     """
     Read each line in the file as a string and store as an element in a list.
-
     """
     lst = []
     f = open(file)
@@ -17,7 +16,6 @@ def getData(file):
 def header_index(header):
     """
     Return the index of where each column name starts
-
     """
     col_names = header.split()
     indexes = []
@@ -34,7 +32,6 @@ def header_index_range(indexes):
     """
     [1, 4, 5] ---> [[1, 4], [4, 5]]
     """
-
     column_index = []
     for first, last in zip(indexes, indexes[1:]):
         column_index += [[first, last]]
@@ -44,7 +41,6 @@ def header_index_range(indexes):
 def empty_matrix(row_size, col_size):
     """
     Create a row_size x col_size matrix filled with zero.
-
     """
     return [[0 for i in range(col_size)] for j in range(row_size)]
 
@@ -58,7 +54,7 @@ def data_matrix(raw_data, row_size, col_size, col_index):
         pointer = 0
         words = raw_data[row_num].split()
         for word in words:
-            index = raw_data[row_num].find(word, pointer) + len(word) #the index of where the entry ends
+            index = raw_data[row_num].find(word, pointer) + len(word)  # the index of where the entry ends
             pointer = index
             for column_num in range(col_size):
                 # Check if the index is in the column range
@@ -94,6 +90,7 @@ def leastDiffItem(itemCol, colA, colB):
     sorted_diff = sorted(difference, key=lambda x: x[1])
     return sorted_diff[0][0]
 
+
 def result(file, id, colA, colB):
     raw_data = getData(file)
     header = raw_data[0]
@@ -112,7 +109,8 @@ def result(file, id, colA, colB):
     # return result
     return leastDiffItem(id_col, col_A, col_B)
 
+
 if __name__ == "__main__":
     print('Smallest temperature spread is on day', result('w_data.dat', 'Dy', 'MxT', 'MnT'))
-    print("The team with the smallest difference in 'for' and 'against' goals is", result('soccer.dat', 'Team', 'F', 'A'))
-
+    print(
+    "The team with the smallest difference in 'for' and 'against' goals is", result('soccer.dat', 'Team', 'F', 'A'))
